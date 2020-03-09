@@ -1,4 +1,4 @@
-![alt text](https://content.digitalwallonia.be/profile/13328-20180810082420000/ephec.jpg "Logo Ephec")
+![alt text](https://github.com/ArtyomNegev/DevWebProjet/blob/master/wiki/Logo_Ephec.jpg "Logo Ephec")
 # Projet de Développement Web - Bloc 2
 
 ## Groupe 10
@@ -25,6 +25,9 @@ Les gros points où nous devrons mettre le plus de ressources seront surement l�
 Concernant la demande de la cliente sur l’accessibilité du site, un simple login temporaire sera ajouté à l’entrée du site.
 Au niveau des technologies, nous avons choisis 2 grandes technologies adaptées à notre projet et à la vie professionnelle actuelle : **Node.JS** et **React.JS** avec une base de données **Mysql**.
 Ces dernières ayant une bonne synergie et l’utilisation du Javascript dans chacune nous permettra de garder une uniformité dans le développement.
+
+![alt text](https://github.com/ArtyomNegev/DevWebProjet/blob/master/wiki/Logo_Tech.png "Logo Technologies")
+
 
 ## Product Backlog
 #### Priorité Haute
