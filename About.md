@@ -43,3 +43,6 @@ Ces dernières ayant une bonne synergie et l’utilisation du Javascript dans ch
 * En tant qu’administrateur je veux une page personnelle accessible par une identification par mot de passe afin de protéger les données de mes clients.
 * En tant qu’administrateur du site je veux pouvoir consulter mon horaire sur ma page personnelle.
 * En tant qu’administrateur je veux pouvoir voir sur ma page personnelle le détail de mes rendez-vous afin de pouvoir adapter mes rendez-vous pour leurs besoins.
+
+## Liens
+Trello : https://trello.com/b/YfwJOKOa/devweb
