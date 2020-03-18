@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "Gilles",
+    "password": "DevWeb1",
+    "database": "SitePsy_Dev",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "Gilles",
+    "password": "DevWeb1",
+    "database": "SitePsy_Test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "Gilles",
+    "password": "DevWeb1",
+    "database": "SitePsy_Production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
