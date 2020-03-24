@@ -7,6 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Accueil from "./accueil";
+import Infos from "./infos";
 import Contact from "./contact";
 import Presentation from "./presentation";
 import Paper from "@material-ui/core/Paper";
@@ -61,6 +62,8 @@ export default function SimpleTabs() {
           <Tab label="Accueil" />
           <Tab label="Presentation" />
           <Tab label="Contact" />
+          <Tab label="Infos" />
+          <Tab label="Réservation" />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -72,6 +75,10 @@ export default function SimpleTabs() {
       <TabPanel value={value} index={2}>
         <Contact></Contact>
       </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Infos></Infos>
+      </TabPanel>
+      <TabPanel value={value} index={4}></TabPanel>
     </div>
   );
 }
