@@ -58,7 +58,7 @@ export default function Contact() {
       <br></br>
       <TextField
         id="numTel"
-        label="numéro de Téléphone"
+        label="Numéro de téléphone"
         variant="outlined"
         onChange={e => setnumTel(e.target.value)}
       />
@@ -67,7 +67,6 @@ export default function Contact() {
         id="date"
         label="Date de naissance"
         type="date"
-        defaultValue="2020-01-01"
         variant="outlined"
         onChange={e => setdateDeNaissance(e.target.value)}
         className={classes.textField}
