@@ -91,7 +91,7 @@ export default function Contact() {
         onChange={e => setMessage(e.target.value)}
       />
       <Button variant="contained" color="primary" onClick={handleClick}>
-        Validate
+        Envoyer
       </Button>
     </form>
   );
