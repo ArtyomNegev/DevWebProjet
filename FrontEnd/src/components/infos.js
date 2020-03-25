@@ -27,16 +27,16 @@ export default function Infos() {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <h1>Infos</h1>
+          <h1 align="center">Infos</h1>
           <p>
-            {" "}
             Pour toute demande de renseignements complémentaires, vous pouvez me
             contacter par téléphone, mail ou en remplissant le formulaire de
             contact
           </p>
           <p>
-            contact@valériecampaignolle <br></br>
-            <br></br>
+            contact@valériecampaignolle
+          </p>
+          <p>
             Adresse de consultation :<br></br>
             Avenue Louis Barthou 144, Bordeaux
           </p>
