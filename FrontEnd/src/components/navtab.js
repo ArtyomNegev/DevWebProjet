@@ -17,12 +17,7 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      {...other}
-    >
+    <Typography component="div" role="tabpanel" hidden={value !== index} {...other}>
       {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
@@ -44,7 +39,6 @@ const useStyles = makeStyles(theme => ({
 export default function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -55,11 +49,7 @@ export default function SimpleTabs() {
         <Paper elevation={0} />
         <Paper />
         <Paper elevation={3} />
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-        >
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Accueil" />
           <Tab label="Presentation" />
           <Tab label="Infos" />
