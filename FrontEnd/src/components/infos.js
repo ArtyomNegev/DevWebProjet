@@ -19,22 +19,32 @@ export default function Infos() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3} direction="row" justify="center" alignItems="center">
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
         <Grid item xs={12}>
-          <h1 align="center">Infos</h1>
-          <p>
-            Pour toute demande de renseignements complémentaires, vous pouvez me
-            contacter par téléphone, mail ou en remplissant le formulaire de
-            contact
-          </p>
-          <p>
-            contact@valériecampaignolle
-          </p>
-          <p>
-            Adresse de consultation :<br></br>
-            Avenue Louis Barthou 144, Bordeaux
-          </p>
-          <MapInfos></MapInfos>
+          <div align="center">
+            <h1 align="center">Infos</h1>
+            <p>
+              Pour toute demande de renseignements complémentaires, vous pouvez
+              me contacter par téléphone, mail ou en remplissant le formulaire
+              de contact.
+            </p>
+            <p style={{ fontWeight: "bold" }}>
+              Mail : contact@valériecampaignolle
+            </p>
+            <p style={{ fontWeight: "bold" }}>Téléphone : +33 574 25 32 91</p>
+            <p>
+              Adresse de consultation :<br></br>
+              Avenue Louis Barthou 144, Bordeaux
+            </p>
+
+            <MapInfos></MapInfos>
+          </div>
         </Grid>
       </Grid>
     </div>
