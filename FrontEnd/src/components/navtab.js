@@ -62,26 +62,16 @@ export default function SimpleTabs() {
         >
           <Tab label="Accueil" />
           <Tab label="Presentation" />
-          <Tab label="Contact" />
           <Tab label="Infos" />
           <Tab label="Réservation" />
+          <Tab label="Contact" />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <Accueil></Accueil>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Presentation></Presentation>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Contact></Contact>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <Infos></Infos>
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        <Reservation></Reservation>
-      </TabPanel>
+      <TabPanel value={value} index={0}><Accueil></Accueil></TabPanel>
+      <TabPanel value={value} index={1}><Presentation></Presentation></TabPanel>
+      <TabPanel value={value} index={2}><Infos></Infos></TabPanel>
+      <TabPanel value={value} index={3}><Reservation></Reservation></TabPanel>
+      <TabPanel value={value} index={4}><Contact></Contact></TabPanel>
     </div>
   );
 }
