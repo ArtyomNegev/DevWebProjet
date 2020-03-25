@@ -1,0 +1,9 @@
+.button {
+  background-color: #4caf50;
+  color: #4caf50;
+  padding: 10px 26px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+}
