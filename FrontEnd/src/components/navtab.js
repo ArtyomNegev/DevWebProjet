@@ -11,6 +11,7 @@ import Infos from "./infos";
 import Contact from "./contact";
 import Presentation from "./presentation";
 import Paper from "@material-ui/core/Paper";
+import Reservation from "./reservation";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,7 +79,9 @@ export default function SimpleTabs() {
       <TabPanel value={value} index={3}>
         <Infos></Infos>
       </TabPanel>
-      <TabPanel value={value} index={4}></TabPanel>
+      <TabPanel value={value} index={4}>
+        <Reservation></Reservation>
+      </TabPanel>
     </div>
   );
 }
