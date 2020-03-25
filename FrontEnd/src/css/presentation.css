@@ -1,1 +1,23 @@
+#LeftSideText {
+  float: right;
+  text-align: right;
+  width: 80%;
+  padding: 30px 30px;
+}
 
+#RightSideText {
+  float: left;
+  text-align: left;
+  width: 80%;
+  padding: 30px 30px;
+}
+
+#LeftSideImg {
+  float: right;
+  padding: 70px 30px;
+}
+
+#RightSideImg {
+  float: left;
+  padding: 70px 30px;
+}
