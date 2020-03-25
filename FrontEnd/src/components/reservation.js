@@ -99,64 +99,43 @@ export default function Reservation() {
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.lundi}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.mardi}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.mercredi}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.jeudi}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.vendredi}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.samedi}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.dimanche}
-                  <ButtonGroup
-                    aria-label="outlined primary button group"
-                    variant="contained"
-                  >
+                  <ButtonGroup aria-label="outlined primary button group" variant="contained">
                     <Button class="button"></Button>
                   </ButtonGroup>
                 </StyledTableCell>

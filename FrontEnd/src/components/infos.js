@@ -19,13 +19,7 @@ export default function Infos() {
 
   return (
     <div className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
+      <Grid container spacing={3} direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
           <h1 align="center">Infos</h1>
           <p>
