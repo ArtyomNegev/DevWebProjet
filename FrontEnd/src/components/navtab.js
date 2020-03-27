@@ -49,7 +49,7 @@ export default function SimpleTabs() {
         <Paper elevation={0} />
         <Paper />
         <Paper elevation={3} />
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+        <Tabs value={value} onChange={handleChange} centered aria-label="simple tabs example">
           <Tab label="Accueil" />
           <Tab label="Presentation" />
           <Tab label="Infos" />
