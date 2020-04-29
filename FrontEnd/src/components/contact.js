@@ -1,9 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { green } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import CheckIcon from "@material-ui/icons/Check";
+import SaveIcon from "@material-ui/icons/Save";
 import { CreateMessage } from "../http_calls/message";
 import Grid from "@material-ui/core/Grid";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,14 +18,52 @@ const useStyles = makeStyles((theme) => ({
       width: "50%",
     },
   },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    "&:hover": {
+      backgroundColor: green[700],
+    },
+  },
+  buttonProgress: {
+    color: green[500],
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }));
 
 export default function Contact() {
   const [Sujet, setSujet] = React.useState("");
   const [Message, setMessage] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const timer = React.useRef();
   const classes = useStyles();
-  const handleClick = () => {
-    CreateMessage(Sujet, Message);
+
+  const buttonClassname = clsx({
+    [classes.buttonSuccess]: success,
+  });
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
+
+  const handleClick = (event) => {
+    setLoading(true);
+    event.preventDefault();
+    setSuccess(false);
+    CreateMessage(Sujet, Message).then(() => {
+      setMessage("");
+      setSujet("");
+      timer.current = setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 1200);
+    });
   };
   return (
     <Grid
@@ -37,6 +81,7 @@ export default function Contact() {
             <TextField
               id="Sujet"
               label="Sujet"
+              value={Sujet}
               variant="outlined"
               onChange={(e) => setSujet(e.target.value)}
             />
@@ -46,13 +91,23 @@ export default function Contact() {
               label="Message"
               multiline
               rows="8"
+              value={Message}
               fullWidth="true"
               variant="outlined"
               onChange={(e) => setMessage(e.target.value)}
             />
-            <Button variant="contained" color="primary" onClick={handleClick}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={buttonClassname}
+              disabled={loading}
+              onClick={handleClick}
+            >
               Envoyer
             </Button>
+            {loading && (
+              <CircularProgress size={24} className={classes.buttonProgress} />
+            )}
           </form>
         </div>
       </Grid>
