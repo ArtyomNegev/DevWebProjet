@@ -24,7 +24,14 @@ module.exports = {
           console.log(token);
           res.setHeader("Authorization", "Bearer " + token);
 
-          res.status(200).send("login succesful");
+		  var moderator = (users[0].userId == 0);
+
+//          res.status(200).send("login succesful");
+
+		  //  the boolean flag moderator is to help the user-interface
+		 //  but  each REST call requiring moderator should be checked by inspecting JWT
+          res.status(200).json({ "token" : token , "moderator" : moderator});
+
         } else {
           res.status(403).send("ça marche bof");
         }
