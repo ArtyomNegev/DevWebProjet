@@ -24,19 +24,18 @@ module.exports = {
           console.log(token);
           res.setHeader("Authorization", "Bearer " + token);
 
-		  var moderator = (users[0].userId == 0);
+          var moderator = users[0].userId == 0;
 
-//          res.status(200).send("login succesful");
+          //          res.status(200).send("login succesful");
 
-		  //  the boolean flag moderator is to help the user-interface
-		 //  but  each REST call requiring moderator should be checked by inspecting JWT
-          res.status(200).json({ "token" : token , "moderator" : moderator});
-
+          //  the boolean flag moderator is to help the user-interface
+          //  but  each REST call requiring moderator should be checked by inspecting JWT
+          res.status(200).json({ token: token, moderator: moderator });
         } else {
-          res.status(403).send("ça marche bof");
+          res.status(403).send("Ã§a marche bof");
         }
       } else {
-        res.status(403).send("ça marche po");
+        res.status(403).send("Ã§a marche po");
       }
     });
   },
