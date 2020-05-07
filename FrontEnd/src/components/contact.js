@@ -82,7 +82,7 @@ export default function Contact() {
               id="Sujet"
               label="Sujet"
               value={Sujet}
-              variant="outlined"
+              variant="filled"
               onChange={(e) => setSujet(e.target.value)}
             />
 
@@ -91,9 +91,9 @@ export default function Contact() {
               label="Message"
               multiline
               rows="8"
+              variant="filled"
               value={Message}
               fullWidth="true"
-              variant="outlined"
               onChange={(e) => setMessage(e.target.value)}
             />
             <Button
