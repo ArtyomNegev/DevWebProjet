@@ -50,6 +50,7 @@ export default function Login() {
   const [Mdp, setMdp] = React.useState("");
   const [redirect, setRedirect] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [loginError, setLoginError] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
   const classes = useStyles();
@@ -84,16 +85,22 @@ export default function Login() {
   const handleClick = () => {
     setLoading(true);
     setSuccess(false);
-    Authenticate(email, Mdp).then(() => {
-      setMdp("");
-      setemail("");
+    Authenticate(email, Mdp)
+      .then(() => {
+        setMdp("");
+        setemail("");
 
-      timer.current = setTimeout(() => {
-        setSuccess(true);
+        timer.current = setTimeout(() => {
+          setSuccess(true);
+          setLoading(false);
+          setRedirect(true);
+        }, 1200);
+      })
+      .catch((error) => {
+        console.log("error auth UI " + error);
         setLoading(false);
-        setRedirect(true);
-      }, 1200);
-    });
+        setLoginError(true);
+      });
   };
   return (
     <Grid container spacing={2}>
@@ -101,6 +108,7 @@ export default function Login() {
         <HomeRoundedIcon color="primary"></HomeRoundedIcon>
       </Link>
       {redirect && <Redirect to="/" />}
+
       <Grid item xs={5}></Grid>
 
       <Grid item xs={2} align="center">
@@ -109,6 +117,7 @@ export default function Login() {
       </Grid>
       <Grid item xs={5}></Grid>
       <Grid item xs={12} align="center">
+        {loginError ? "Erreur lors de l'authentification" : null}
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="email"
