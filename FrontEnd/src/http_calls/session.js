@@ -14,9 +14,9 @@ export async function Authenticate(email, Mdp) {
         localStorage.setItem("moderator", response.data.moderator);
         console.log("put in localStorage");
         console.log(localStorage.getItem("JWTtoken"));
-      },
-      (error) => {
-        console.log(error);
       }
+      // , (error) => {
+      // 	console.log(error);
+      // }
     );
 }
