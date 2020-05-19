@@ -65,7 +65,7 @@ export default function Reservation() {
 
   const [recordedAppointments, setRecordedAppointments] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
-  const [currentPageDate, setCurrentPageDate] = useState(new Date(Date.now()).toISOString().split('T')[0]);
+  const currentPageDate = useState(new Date(Date.now()).toISOString().split('T')[0]);
 
 	useEffect(() => {
 	    retrieveTutorials();

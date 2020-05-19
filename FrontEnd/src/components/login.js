@@ -8,16 +8,12 @@ import Button from "@material-ui/core/Button";
 import { Authenticate } from "../http_calls/session";
 import Grid from "@material-ui/core/Grid";
 import logo from "../assets/logo.png";
-import Signup from "./signup";
 import { Link, Redirect } from "react-router-dom";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import IconButton from "@material-ui/core/IconButton";
-import Input from "@material-ui/core/Input";
 import FilledInput from "@material-ui/core/FilledInput";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -51,12 +47,9 @@ export default function Login() {
   const [redirect, setRedirect] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [loginError, setLoginError] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const setSuccess = React.useState(false);
   const timer = React.useRef();
   const classes = useStyles();
-  const buttonClassname = clsx({
-    [classes.buttonSuccess]: success,
-  });
 
   React.useEffect(() => {
     return () => {

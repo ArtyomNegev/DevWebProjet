@@ -13,8 +13,7 @@ import Contact from "./contact";
 import Presentation from "./presentation";
 import Paper from "@material-ui/core/Paper";
 import Reservation from "./reservation";
-import { Link, Redirect } from "react-router-dom";
-import Login from "./login";
+import { Link } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 function TabPanel(props) {

@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Accueil from "./accueil";
-import Contact from "./contact";
 import Login from "./login";
 import NavTabs from "./navtab";
 import Signup from "./signup";
