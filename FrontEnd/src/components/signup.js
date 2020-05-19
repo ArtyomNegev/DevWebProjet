@@ -52,8 +52,10 @@ export default function Signup() {
   const [numTel, setnumTel] = React.useState("");
   const [dateDeNaissance, setdateDeNaissance] = React.useState("");
   const [Mdp, setMdp] = React.useState("");
+  const [loginError, setLoginError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [redirect, setRedirect] = React.useState(false);
   const timer = React.useRef();
   const classes = useStyles();
   const buttonClassname = clsx({
@@ -87,36 +89,45 @@ export default function Signup() {
   const handleClick = () => {
     setLoading(true);
     setSuccess(false);
-    CreateClient(Nom, Prenom, Email, numTel, dateDeNaissance, Mdp).then(() => {
-      setNom("");
-      setPrenom("");
-      setEmail("");
-      setdateDeNaissance("");
-      setMdp("");
-      setnumTel("");
-      timer.current = setTimeout(() => {
-        setSuccess(true);
+    CreateClient(Nom, Prenom, Email, numTel, dateDeNaissance, Mdp)
+      .then(() => {
+        setNom("");
+        setPrenom("");
+        setEmail("");
+        setdateDeNaissance("");
+        setMdp("");
+        setnumTel("");
+        setRedirect(true);
+        timer.current = setTimeout(() => {
+          setSuccess(true);
+          setLoading(false);
+        }, 1200);
+      })
+      .catch((error) => {
+        console.log("error auth UI " + error);
         setLoading(false);
-      }, 1200);
-    });
+        setLoginError(true);
+      });
   };
   return (
     <Grid container spacing={3}>
       <Link to="/">
         <HomeRoundedIcon color="primary"></HomeRoundedIcon>
       </Link>
+      {redirect && <Redirect to="/login" />}
       <Grid item xs={5}></Grid>
       <Grid item xs={2} align="center">
         {" "}
       </Grid>
       <Grid item xs={5}></Grid>
       <Grid item xs={12} align="center">
+        {loginError ? "Erreur lors de l'enregistrement" : null}
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="Nom"
             label="Nom"
             value={Nom}
-            variant="outlined"
+            variant="filled"
             onChange={(e) => setNom(e.target.value)}
           />
           <br></br>
@@ -124,7 +135,7 @@ export default function Signup() {
             id="Prenom"
             label="Prénom"
             value={Prenom}
-            variant="outlined"
+            variant="filled"
             onChange={(e) => setPrenom(e.target.value)}
           />
           <br></br>
@@ -132,7 +143,7 @@ export default function Signup() {
             id="numTel"
             label="Numéro de Téléphone"
             value={numTel}
-            variant="outlined"
+            variant="filled"
             onChange={(e) => setnumTel(e.target.value)}
           />
           <br></br>
@@ -141,7 +152,7 @@ export default function Signup() {
             label="Date de naissance"
             type="date"
             value={dateDeNaissance}
-            variant="outlined"
+            variant="filled"
             onChange={(e) => setdateDeNaissance(e.target.value)}
             className={classes.textField}
             InputLabelProps={{
@@ -153,7 +164,7 @@ export default function Signup() {
             id="Email"
             value={Email}
             label="Adresse mail"
-            variant="outlined"
+            variant="filled"
             onChange={(e) => setEmail(e.target.value)}
           />
           <br></br>
