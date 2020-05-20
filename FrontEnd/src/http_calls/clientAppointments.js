@@ -6,6 +6,15 @@ export async function GetClientAppointments() {
 		headers: {
 			'Authorization': localStorage.getItem('JWTtoken')
 		}
+	}).catch((error) => {
+		//#TODO also check on error.data   BAD_TOKEN
+		console.log('GetClientAppointments error ', error.response.status)
+		
+	//	alert("Vous devez vous reconnecter !") 
+		if (error.response.status=== 401) {
+			alert("Vous devez vous reconnecter !")
+			localStorage.removeItem('JWTtoken')
+		}
 	})
 /*	.then((response) => {
 		console.log(response.data);
