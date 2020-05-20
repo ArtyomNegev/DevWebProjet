@@ -61,6 +61,7 @@ module.exports = {
 		// expect a date
 
 		var fromDate = req.query.fromDate;
+		var toDate = req.query.toDate;
 		//console.log(fromDate)
 
 		return Appointment.findAll({
@@ -74,8 +75,8 @@ module.exports = {
 				debut: {
 					[Op.and]:
 					{
-						[Op.gt]: literal('STR_TO_DATE("' + req.query.fromDate + '","%Y-%m-%d")'),
-						[Op.lt]: literal('DATE_ADD("' + req.query.fromDate + '", INTERVAL 07 DAY)')
+						[Op.gte]: literal('STR_TO_DATE("' + req.query.fromDate + '","%Y-%m-%d")'),
+						[Op.lte]: literal('STR_TO_DATE("' + req.query.toDate + '","%Y-%m-%d")')
 					}
 
 				},
@@ -87,7 +88,8 @@ module.exports = {
 					literal(req.userId + ' = 0'),
 				]
 				//}
-			}
+			},
+			order: literal('1 ASC')
 		})
 			.then((msg) => res.status(200).send(msg))
 			.catch((error) => res.status(400).send(error));
@@ -109,22 +111,50 @@ module.exports = {
 		return Appointment.findAll({
 			include: { model: Clients, attributes: { exclude: ['password'] } },
 			where: {
-				/*
-				  default and  for  where   --  [Op.and]:
-				{*/
+				debut: {
+					[Op.and]:
+					{
+						[Op.gte]: literal('STR_TO_DATE("' + req.query.fromDate + '","%Y-%m-%d")'),
+						[Op.lte]: literal('STR_TO_DATE("' + req.query.toDate + '","%Y-%m-%d")')
+					}
+
+				},
+/*
 				debut: {
 					[Op.and]:
 					{
 						[Op.gt]: literal('STR_TO_DATE(\"' + req.query.fromDate + '\","%Y-%m-%d")'),
 						[Op.lt]: literal('DATE_ADD("' + req.query.fromDate + '", INTERVAL 07 DAY)')
 					}
-
 				},
+				
+*/				
 				[Op.or]: [
 					{ clientId: req.userId },
 					// test  if   req.userId = 0
 					//  ["id > ?", 25]
 					// ["clientId = ?" , req.userId]
+					literal(req.userId + ' = 0'),
+				]
+				//}
+			},
+			order: literal('1 ASC')
+		})
+			//.then(call pruneFetchAll(req,res, (req.userId==0), )
+			.then((msg) => res.status(200).send(msg))
+			.catch((error) => res.status(400).send(error));
+
+	},
+
+
+	getAppointmentByClientAndId(req, res) {
+
+		return Appointment.findOne({
+			// include: { model: Clients, attributes: { exclude: ['password'] } },
+			where: {
+				id: req.params.id,
+				[Op.or]: [
+					{ clientId: req.userId },
 					literal(req.userId + ' = 0'),
 				]
 				//}
@@ -134,7 +164,32 @@ module.exports = {
 			.then((msg) => res.status(200).send(msg))
 			.catch((error) => res.status(400).send(error));
 
+	},
+
+
+	getAppointmentsByClient(req, res) {
+
+		return Appointment.findAll({
+			// include: { model: Clients, attributes: { exclude: ['password'] } },
+			where: {
+				[Op.or]: [
+					{ clientId: req.userId },
+					literal(req.userId + ' = 0'),
+				]
+				//}
+			},
+			order : literal ('debut')
+			// order: literal('abs(debut-now()) ASC') 
+		})
+			//.then(call pruneFetchAll(req,res, (req.userId==0), )
+			.then((msg) => res.status(200).send(msg))
+			.catch((error) => res.status(400).send(error));
+
 	}
+
+
+
+
 
 };
 
