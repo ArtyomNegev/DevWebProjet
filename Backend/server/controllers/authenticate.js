@@ -1,7 +1,11 @@
 const Client = require("../../models").Clients;
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const Key = require("../constant/index");
+
+const tokenLib = require("../middleware/token");
+//const JWTKEY = require("../constant/index");
+const JWTKEY = "DoesNotWorkWith_constant!!!";
+
+
 module.exports = {
   login(req, res) {
     Client.findAll({
@@ -11,31 +15,37 @@ module.exports = {
     }).then((users) => {
       if (users.length > 0) {
         if (bcrypt.compareSync(req.body.Mdp, users[0].password)) {
-          const token = jwt.sign(
+	
+/*          const token = jwt.sign(
             {
               _id: users[0].userId,
             },
             "Gilles",
             {
-              expiresIn: "1h",
+              expiresIn: "1h",   // to test  "1m"
               issuer: "SitePsy_Dev",
             }
           );
-          console.log(token);
+*/
+          const userId = users[0].userId
+		  const token = tokenLib.createJWT(userId, JWTKEY, userId===0?"15h":"1h")
+
+//          console.log(token);
           res.setHeader("Authorization", "Bearer " + token);
 
-          var moderator = users[0].userId == 0;
+		  var moderator = (users[0].userId == 0);
 
-          //          res.status(200).send("login succesful");
+//          res.status(200).send("login succesful");
 
-          //  the boolean flag moderator is to help the user-interface
-          //  but  each REST call requiring moderator should be checked by inspecting JWT
-          res.status(200).json({ token: token, moderator: moderator });
+		  //  the boolean flag moderator is to help the user-interface
+		 //  but  each REST call requiring moderator should be checked by inspecting JWT
+          res.status(200).json({ "token" : token , "moderator" : moderator});
+
         } else {
-          res.status(403).send("Ã§a marche bof");
+          res.status(403).send("ça marche bof");
         }
       } else {
-        res.status(403).send("Ã§a marche po");
+        res.status(403).send("ça marche po");
       }
     });
   },

@@ -1,4 +1,4 @@
-const client = require("./client");
+const client = require("./client.js");
 const message = require("./message");
 const authenticate = require("./authenticate");
 const appointment = require("./appointment");
@@ -9,5 +9,5 @@ module.exports = {
   message,
   authenticate,
   appointment,
-  calendar
+  calendar,
 };

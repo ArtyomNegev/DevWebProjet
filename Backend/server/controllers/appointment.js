@@ -60,14 +60,23 @@ module.exports = {
 		// return week by week
 		// expect a date
 
+		let month = 86400 * 30 * 1000;
+
 		var fromDate = req.query.fromDate;
+		if (fromDate === undefined) {
+			fromDate = new Date(Date.now()-month).toISOString().split('T')[0]
+		}
 		var toDate = req.query.toDate;
-		//console.log(fromDate)
+		if (toDate === undefined) {
+			toDate = new Date(Date.now()+month).toISOString().split('T')[0]
+		}
+		//console.log('fromDate',fromDate)
+		//console.log('toDate',toDate)
 
 		return Appointment.findAll({
 			//   join only with field  userId  to have similar structure as moderator.appointments
-			include: { model: Clients, attributes: ['userId'] },
-			//	include: { model : Clients, attributes: { exclude: ['password'] } },
+			//include: { model: Clients, attributes: ['userId'] },
+			
 			where: {
 				/*
 				  default and  for  where   --  [Op.and]:
@@ -75,23 +84,41 @@ module.exports = {
 				debut: {
 					[Op.and]:
 					{
-						[Op.gte]: literal('STR_TO_DATE("' + req.query.fromDate + '","%Y-%m-%d")'),
-						[Op.lte]: literal('STR_TO_DATE("' + req.query.toDate + '","%Y-%m-%d")')
+						[Op.gte]: literal('STR_TO_DATE("' + fromDate + '","%Y-%m-%d")'),
+						[Op.lte]: literal('STR_TO_DATE("' + toDate + '","%Y-%m-%d")')
 					}
 
 				},
-				[Op.or]: [
+				
+/*				[Op.or]: [
 					{ clientId: req.userId },
-					// test  if   req.userId = 0
-					//  ["id > ?", 25]
-					// ["clientId = ?" , req.userId]
 					literal(req.userId + ' = 0'),
 				]
-				//}
+*/				//}
 			},
-			order: literal('1 ASC')
+			order: literal('1 DESC')
 		})
-			.then((msg) => res.status(200).send(msg))
+			.then
+			((msg) => 
+				{
+					// console.log(msg)
+					let anonymAppointments = msg.map(e => {
+				      return {
+					    id: e.dataValues.id,
+				        debut: e.dataValues.debut,
+						fin : e.dataValues.fin,
+			            commentaire : (req.userId===e.dataValues.clientId?e.dataValues.commentaire:""),
+				        createdAt : e.dataValues.createdAt,
+						updatedAt : e.dataValues.updatedAt,
+						clientId : (req.userId===e.dataValues.clientId?e.dataValues.clientId:-1),
+				      };
+				    });
+					
+					// console.log(anonymAppointments)
+					//res.status(200).send(msg)
+				    res.status(200).send(anonymAppointments)
+				}
+			)
 			.catch((error) => res.status(400).send(error));
 	},
 
@@ -100,8 +127,16 @@ module.exports = {
 		// return week by week
 		// expect a date
 
-		var fromDate = req.query.fromDate
-		//console.log(fromDate)
+		let month = 86400 * 30 * 1000;
+
+		var fromDate = req.query.fromDate;
+		if (fromDate === undefined) {
+			fromDate = new Date(Date.now()-month).toISOString().split('T')[0]
+		}
+		var toDate = req.query.toDate;
+		if (toDate === undefined) {
+			toDate = new Date(Date.now()+month).toISOString().split('T')[0]
+		}
 
 		if (req.userId != 0) {
 			res.status(401).send("No sufficient rights")
@@ -114,8 +149,8 @@ module.exports = {
 				debut: {
 					[Op.and]:
 					{
-						[Op.gte]: literal('STR_TO_DATE("' + req.query.fromDate + '","%Y-%m-%d")'),
-						[Op.lte]: literal('STR_TO_DATE("' + req.query.toDate + '","%Y-%m-%d")')
+						[Op.gte]: literal('STR_TO_DATE("' + fromDate + '","%Y-%m-%d")'),
+						[Op.lte]: literal('STR_TO_DATE("' + toDate + '","%Y-%m-%d")')
 					}
 
 				},
