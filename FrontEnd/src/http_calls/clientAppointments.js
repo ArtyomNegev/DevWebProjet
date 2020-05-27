@@ -1,8 +1,8 @@
-import { BASEURL } from "../constant/constant";
+import getBaseURL from "./common-http-calls"
 import axios from "axios";
 
 export async function GetClientAppointments() {
-	return axios.get(BASEURL + "api/client/appointments", {
+	return axios.get(getBaseURL() + "api/client/appointments", {
 		headers: {
 			'Authorization': localStorage.getItem('JWTtoken')
 		}
