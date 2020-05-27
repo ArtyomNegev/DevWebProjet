@@ -17,9 +17,10 @@ module.exports = (sequelize, DataTypes) => {
      
       clientId: DataTypes.INTEGER,
 
-// indirect values
+/*// indirect values
 	  date: DataTypes.DATEONLY,
       heureDebut : DataTypes.STRING(5)    // format   HH:MM
+*/
     },
     {}
   );

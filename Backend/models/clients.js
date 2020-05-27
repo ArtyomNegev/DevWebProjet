@@ -8,14 +8,28 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
       password: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      numTel: DataTypes.STRING,
-      dateDeNaissance: DataTypes.DATE,
+      numTel: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      dateDeNaissance: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
     },
     {}
   );
@@ -23,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
     Clients.hasMany(models.Messages, {
       foreignKey: "clientId",
       as: "message",
+    });
+  
+    Clients.hasMany(models.Appointments, {
+      foreignKey: "clientId",
+      as: "appointment",
     });
   };
   return Clients;
