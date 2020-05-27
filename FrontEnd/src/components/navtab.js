@@ -45,6 +45,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const isLoggedIn = () => {
+  let result = localStorage.getItem("JWTtoken") != null;
+  console.log("navtabs isLoggedIn ", result);
+  return result;
+};
+
 export default function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -52,9 +58,19 @@ export default function SimpleTabs() {
     setValue(newValue);
   };
 
+  //       <Tab label="Login" />
+  // ...
+
+  /*     <TabPanel value={value} index={5}>
+// 		<Login isLoggedInParam={isLoggedIn()}></Login>
+		</TabPanel>
+*/
+
+  //   <Link to="/login?isLoggedIn={isLoggedIn()}">
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="dynamic">
         <Paper elevation={0} />
         <Paper />
         <Paper elevation={3} />
@@ -62,13 +78,15 @@ export default function SimpleTabs() {
           value={value}
           onChange={handleChange}
           centered
+          variant="scrollable"
+          //variant="fullWidth"
+          scrollButtons="on"
           aria-label="simple tabs example"
         >
           <Tab label="Accueil" />
           <Tab label="Presentation" />
-          <Tab label="Infos" />
+          <Tab label="Infos / Contact" />
           <Tab label="Réservation" />
-          <Tab label="Contact" />
 
           <Link to="/login">
             <IconButton>
@@ -89,10 +107,6 @@ export default function SimpleTabs() {
       <TabPanel value={value} index={3}>
         <Reservation></Reservation>
       </TabPanel>
-      <TabPanel value={value} index={4}>
-        <Contact></Contact>
-      </TabPanel>
-      <TabPanel value={value} index={5}></TabPanel>
     </div>
   );
 }

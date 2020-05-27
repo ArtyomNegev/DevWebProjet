@@ -54,8 +54,8 @@ export default function GridPresentation() {
           <img
             alt="mental health"
             src={logo}
-            width="400"
-            height="400"
+            width="50%"
+            height="50%"
             id="RightSideImg"
           />
         </Grid>
@@ -63,8 +63,8 @@ export default function GridPresentation() {
           <img
             alt="mental health"
             src={logo}
-            width="400"
-            height="400"
+            width="50%"
+            height="50%"
             id="LeftSideImg"
           />
         </Grid>

@@ -3,6 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import MapInfos from "./map";
+
+import Contact from "./contact";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -15,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Infos() {
+	
+  const [loggedIn, setLoggedIn] = React.useState(localStorage.getItem('JWTtoken')!=null);
+	
   const classes = useStyles();
 
   return (
@@ -46,7 +52,11 @@ export default function Infos() {
             <MapInfos></MapInfos>
           </div>
         </Grid>
+		{!loggedIn && <p>Vous devez &ecirc;tre authentifié pour envoyer des messages via le site internet</p>}
       </Grid>
+		
+	    {loggedIn &&  Contact() }
+
     </div>
   );
 }

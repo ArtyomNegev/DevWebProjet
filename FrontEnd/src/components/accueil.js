@@ -3,33 +3,34 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import banner from "../assets/banner.png";
+import EnhancedTable from "./demo-table-patch";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary
-  }
+    color: theme.palette.text.secondary,
+  },
 }));
 
-export default function Accueil() { 
-	const classes = useStyles();
+export default function Accueil() {
+  const classes = useStyles();
 
-	return (
-		<div className={classes.root}>
+  return (
+    <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
           <h1>Accueil</h1>
         </Grid>
-		<Grid item xs={4}></Grid>
+        <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-          <img alt="Bannière" src={banner} width="512" height="421"/>
+          <img alt="Bannière" src={banner} width="100%" height="100%" />
         </Grid>
         <Grid item xs={4}></Grid>
       </Grid>
     </div>
-	); 
+  );
 }

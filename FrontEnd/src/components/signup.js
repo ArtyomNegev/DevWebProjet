@@ -52,7 +52,6 @@ export default function Signup() {
   const [numTel, setnumTel] = React.useState("");
   const [dateDeNaissance, setdateDeNaissance] = React.useState("");
   const [Mdp, setMdp] = React.useState("");
-  const [loginError, setLoginError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [redirect, setRedirect] = React.useState(false);
@@ -89,25 +88,19 @@ export default function Signup() {
   const handleClick = () => {
     setLoading(true);
     setSuccess(false);
-    CreateClient(Nom, Prenom, Email, numTel, dateDeNaissance, Mdp)
-      .then(() => {
-        setNom("");
-        setPrenom("");
-        setEmail("");
-        setdateDeNaissance("");
-        setMdp("");
-        setnumTel("");
-        setRedirect(true);
-        timer.current = setTimeout(() => {
-          setSuccess(true);
-          setLoading(false);
-        }, 1200);
-      })
-      .catch((error) => {
-        console.log("error auth UI " + error);
+    CreateClient(Nom, Prenom, Email, numTel, dateDeNaissance, Mdp).then(() => {
+      setNom("");
+      setPrenom("");
+      setEmail("");
+      setdateDeNaissance("");
+      setMdp("");
+      setnumTel("");
+      setRedirect(true);
+      timer.current = setTimeout(() => {
+        setSuccess(true);
         setLoading(false);
-        setLoginError(true);
-      });
+      }, 1200);
+    });
   };
   return (
     <Grid container spacing={3}>
@@ -121,7 +114,6 @@ export default function Signup() {
       </Grid>
       <Grid item xs={5}></Grid>
       <Grid item xs={12} align="center">
-        {loginError ? "Erreur lors de l'enregistrement" : null}
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="Nom"
